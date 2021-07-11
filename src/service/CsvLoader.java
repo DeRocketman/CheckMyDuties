@@ -1,13 +1,10 @@
 package service;
 
-
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import service.CsvRow;
+import java.util.function.Predicate;
 
 
 public class CsvLoader {
@@ -38,7 +35,25 @@ public class CsvLoader {
         return csvRows;
     }
 
+    public void compareAll(Predicate<CsvRow> comparer) {
+        for (CsvRow row: readFile()) {
+            if (comparer.test(row)) {
+                System.out.println(row.toString());
+            }
+        }
+    }
 
-
-
+    public void buildDutyPlan() {
+        int firstPlanIndex = 0;
+        int lastPlanIndex = 1;
+        int firstDutyIndex = 0;
+        int lastDutyIndex = 1;
+        for (int i = 0; i< readFile().size(); i++) {
+            if (readFile().get(firstPlanIndex).getPlan().equals(readFile().get(lastPlanIndex).getPlan())) {
+                if (readFile().get(firstDutyIndex).getPlan().equals(readFile().get(lastDutyIndex).getPlan())) {
+                    System.out.println("Plan gleich, Duty gleich");
+                }
+            }
+        }
+    }
 }

@@ -1,30 +1,30 @@
 package service;
 
 public class CsvRow {
-   private String plan;
-   private String periodeFrom;
-   private String periodTill;
-   private String duty;
-   private String start;
-   private String end;
-   private String breakTime;
-   private String payedTime;
-   private String duration;
-   private String from;
-   private String to;
-   private String kindElement;
-   private String trainNumber;
-   private String vehicle;
-   private String circulation;
-   private String km;
-   private String periode;
-   private String dayCode;
-   private String department;
-   private String checkPoint;
-   private String lineNumber;
-   private String dutyNotice;
-   private String planNotice;
-   private String descriptionNotice;
+    private final String plan;
+    private final String periodeFrom;
+    private final String periodTill;
+    private final String duty;
+    private final String start;
+    private final String end;
+    private final String breakTime;
+    private final String payedTime;
+    private final String duration;
+    private final String from;
+    private final String to;
+    private final String kindElement;
+    private final String trainNumber;
+    private final String vehicle;
+    private final String circulation;
+    private final String km;
+    private final String periode;
+    private final String dayCode;
+    private final String department;
+    private final String checkPoint;
+    private final String lineNumber;
+    private final String dutyNotice;
+    private final String planNotice;
+    private final String descriptionNotice;
 
     public CsvRow(String plan, String periodeFrom, String periodTill, String duty, String start, String end, String breakTime, String payedTime, String duration, String from, String to, String kindElement, String trainNumber, String vehicle, String circulation, String km, String periode, String dayCode, String department, String checkPoint, String lineNumber, String dutyNotice, String planNotice, String descriptionNotice) {
         this.plan = plan;
