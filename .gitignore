@@ -1,0 +1,11 @@
+/out/production/CheckMyDuties/service/CsvLoader.class
+/.idea/.gitignore
+/out/production/CheckMyDuties/service/CsvLoaderTester.class
+/out/production/CheckMyDuties/service/CsvRow.class
+/out/production/CheckMyDuties/domain/Duty.class
+/out/production/CheckMyDuties/domain/DutyDescription.class
+/out/production/CheckMyDuties/aggregate/DutyPlan.class
+/.idea/intellij-javadocs-4.0.1.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
