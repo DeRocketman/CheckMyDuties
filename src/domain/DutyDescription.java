@@ -10,13 +10,13 @@ public class DutyDescription {
     private String trainNumber;
     private String vehicle;
     private String circulationNumber;
-    private int km;
+    private String km;
     private String trainLine;
     private String Notice;
 
     public DutyDescription(String startTime, String endTime, String duration, String fromGeo, String toGeo,
                            String kindElement, String trainNumber, String vehicle, String circulationNumber,
-                           int km, String trainLine, String notice) {
+                           String km, String trainLine, String notice) {
 
         this.startTime = startTime;
         this.endTime = endTime;
@@ -104,11 +104,11 @@ public class DutyDescription {
         this.circulationNumber = circulationNumber;
     }
 
-    public int getKm() {
+    public String getKm() {
         return km;
     }
 
-    public void setKm(int km) {
+    public void setKm(String km) {
         this.km = km;
     }
 
@@ -126,5 +126,23 @@ public class DutyDescription {
 
     public void setNotice(String notice) {
         Notice = notice;
+    }
+
+    @Override
+    public String toString() {
+        return "DutyDescription{" +
+                "startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", duration='" + duration + '\'' +
+                ", fromGeo='" + fromGeo + '\'' +
+                ", toGeo='" + toGeo + '\'' +
+                ", kindElement='" + kindElement + '\'' +
+                ", trainNumber='" + trainNumber + '\'' +
+                ", vehicle='" + vehicle + '\'' +
+                ", circulationNumber='" + circulationNumber + '\'' +
+                ", km='" + km + '\'' +
+                ", trainLine='" + trainLine + '\'' +
+                ", Notice='" + Notice + '\'' +
+                '}';
     }
 }

@@ -57,6 +57,10 @@ public class CsvRow {
         return plan;
     }
 
+    public String getDuration() {
+        return duration;
+    }
+
     public String getPeriodeFrom() {
         return periodeFrom;
     }

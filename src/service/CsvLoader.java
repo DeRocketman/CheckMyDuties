@@ -1,11 +1,14 @@
 package service;
 
+import aggregate.DutyPlan;
+import domain.Duty;
+import domain.DutyDescription;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.function.Predicate;
-
 
 public class CsvLoader {
    String filePath;
@@ -31,7 +34,6 @@ public class CsvLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(csvRows.size());
         return csvRows;
     }
 
@@ -43,17 +45,50 @@ public class CsvLoader {
         }
     }
 
-    public void buildDutyPlan() {
+    public DutyPlan buildDutyPlan() {
         int firstPlanIndex = 0;
         int lastPlanIndex = 1;
         int firstDutyIndex = 0;
         int lastDutyIndex = 1;
-        for (int i = 0; i< readFile().size(); i++) {
+
+        DutyPlan dutyPlan = new DutyPlan(readFile().get(firstPlanIndex).getPeriodeFrom(),
+                readFile().get(firstPlanIndex).getPeriodTill(), readFile().get(firstPlanIndex).getDayCode(),
+                readFile().get(firstPlanIndex).getPlanNotice());
+
+        for (int i = 0; i < readFile().size(); i++) {
             if (readFile().get(firstPlanIndex).getPlan().equals(readFile().get(lastPlanIndex).getPlan())) {
-                if (readFile().get(firstDutyIndex).getPlan().equals(readFile().get(lastDutyIndex).getPlan())) {
-                    System.out.println("Plan gleich, Duty gleich");
+                if (!readFile().get(firstDutyIndex).getDuty().equals(readFile().get(lastDutyIndex).getDuty()) || readFile().size() - lastDutyIndex == 1) {
+                    if (lastDutyIndex-readFile().size()==-1) {
+                        System.out.println("-----------------------------------------LETZTE RUNDE----------");
+                    }
+                    Duty duty = new Duty(readFile().get(firstDutyIndex).getDuty(),
+                            readFile().get(firstDutyIndex).getStart(), readFile().get(lastDutyIndex-1).getEnd(),
+                            readFile().get(firstDutyIndex).getPayedTime(), "00:00", "00:00",
+                            readFile().get(firstDutyIndex).getPeriode(), readFile().get(firstDutyIndex).getDepartment(),
+                            readFile().get(firstDutyIndex).getDutyNotice());
+                    for (CsvRow row: readFile().subList(firstDutyIndex, lastDutyIndex-1)) {
+                        DutyDescription description = new DutyDescription(row.getStart(), row.getEnd(),
+                                row.getDuration(), row.getFrom(), row.getTo(), row.getKindElement(),
+                                row.getTrainNumber(), row.getVehicle(), row.getCirculation(), row.getKm(),
+                                row.getLineNumber(), row.getDescriptionNotice());
+                        duty.addDescriptions(description);
+                    }
+
+                    dutyPlan.addDuties(duty);
+                    firstDutyIndex = lastDutyIndex;
+                } else {
+                    lastDutyIndex++;
+                    lastPlanIndex++;
+                    if (lastDutyIndex == readFile().size()) {
+                        System.out.println("HUHUUUUUUUUUUUUUUUUUUUUUUU");
+                    }
+                }
+                if (lastDutyIndex == readFile().size()) {
+                    System.out.println("Ende erreicht: " + lastPlanIndex + "/" + readFile().size());
+                    break;
                 }
             }
         }
+        return dutyPlan;
     }
 }

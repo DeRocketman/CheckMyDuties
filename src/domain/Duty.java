@@ -109,7 +109,23 @@ public class Duty {
         return descriptions;
     }
 
-    public void setDescriptions(ArrayList<DutyDescription> descriptions) {
-        this.descriptions = descriptions;
+    public void addDescriptions(DutyDescription description) {
+        this.descriptions.add(description);
+    }
+
+    @Override
+    public String toString() {
+        return "Duty{" +
+                "dutyNumber='" + dutyNumber + '\'' +
+                ", start='" + start + '\'' +
+                ", end='" + end + '\'' +
+                ", payedTime='" + payedTime + '\'' +
+                ", breakTime='" + breakTime + '\'' +
+                ", duration='" + duration + '\'' +
+                ", periode='" + periode + '\'' +
+                ", notice='" + notice + '\'' +
+                ", department='" + department + '\'' +
+                ", descriptions=" + descriptions +
+                '}';
     }
 }

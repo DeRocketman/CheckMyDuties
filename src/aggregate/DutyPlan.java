@@ -56,7 +56,7 @@ public class DutyPlan {
         return duties;
     }
 
-    public void setDuties(ArrayList<Duty> duties) {
-        this.duties = duties;
+    public void addDuties(Duty duty) {
+        this.duties.add(duty);
     }
 }
