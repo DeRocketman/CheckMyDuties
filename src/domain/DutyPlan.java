@@ -1,23 +1,33 @@
-package aggregate;
+package domain;
 
 import domain.Duty;
 
 import java.util.ArrayList;
 
 public class DutyPlan {
+    private String planName;
     private String periodeFrom;
     private String periodeTill;
     private String notice;
     private String dayCode;
     private ArrayList <Duty> duties;
 
-    public DutyPlan(String periodeFrom, String periodeTill, String dayCode, String notice) {
+    public DutyPlan(String planName ,String periodeFrom, String periodeTill, String dayCode, String notice) {
+        this.planName = planName;
         this.periodeFrom = periodeFrom;
         this.periodeTill = periodeTill;
         this.dayCode = dayCode;
         this.notice = notice;
 
         this.duties = new ArrayList<>();
+    }
+
+    public String getPlanName() {
+        return planName;
+    }
+
+    public void setPlanName(String planName) {
+        this.planName = planName;
     }
 
     public String getPeriodeFrom() {
@@ -58,5 +68,16 @@ public class DutyPlan {
 
     public void addDuties(Duty duty) {
         this.duties.add(duty);
+    }
+
+    @Override
+    public String toString() {
+        return "DutyPlan{" +
+                "planName='" + planName + '\'' +
+                ", periodeFrom='" + periodeFrom + '\'' +
+                ", periodeTill='" + periodeTill + '\'' +
+                ", notice='" + notice + '\'' +
+                ", dayCode='" + dayCode +
+                '}';
     }
 }

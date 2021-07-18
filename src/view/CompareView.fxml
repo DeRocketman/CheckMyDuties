@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ButtonBar layoutX="35.0" layoutY="334.0" prefHeight="40.0" prefWidth="522.0">
+        <buttons>
+          <Button mnemonicParsing="false" text="Regeldienste" />
+            <Button mnemonicParsing="false" text="Andere Dienste" />
+            <Button mnemonicParsing="false" text="Abgleich" />
+            <Button mnemonicParsing="false" text="E-Mail" />
+        </buttons>
+      </ButtonBar>
+      <TableView layoutX="14.0" layoutY="30.0" prefHeight="128.0" prefWidth="556.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Dienst" />
+          <TableColumn prefWidth="75.0" text="Beginn" />
+            <TableColumn prefWidth="75.0" text="Ende" />
+            <TableColumn prefWidth="75.0" text="Pause" />
+            <TableColumn prefWidth="75.0" text="Bezahlte Zeit" />
+            <TableColumn prefWidth="75.0" text="Dauer" />
+            <TableColumn prefWidth="97.0" text="Abweichung" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

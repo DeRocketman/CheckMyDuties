@@ -124,8 +124,7 @@ public class Duty {
                 ", duration='" + duration + '\'' +
                 ", periode='" + periode + '\'' +
                 ", notice='" + notice + '\'' +
-                ", department='" + department + '\'' +
-                ", descriptions=" + descriptions +
+                ", department='" + department +
                 '}';
     }
 }
