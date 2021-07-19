@@ -37,13 +37,6 @@ public class CsvLoader {
         return csvRows;
     }
 
-    public void compareAll(Predicate<CsvRow> comparer) {
-        for (CsvRow row: readFile()) {
-            if (comparer.test(row)) {
-                System.out.println(row.toString());
-            }
-        }
-    }
 
     public ArrayList<DutyPlan> buildDutyPlan() {
         ArrayList<DutyPlan> dutyPlans = new ArrayList<>();
