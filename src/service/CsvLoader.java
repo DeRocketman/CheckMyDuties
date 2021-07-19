@@ -7,6 +7,7 @@ import domain.DutyDescription;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
@@ -38,7 +39,7 @@ public class CsvLoader {
     }
 
 
-    public ArrayList<DutyPlan> buildDutyPlan() {
+    public ArrayList<DutyPlan> buildDutyPlan() throws ParseException {
         ArrayList<DutyPlan> dutyPlans = new ArrayList<>();
         int planStart = 0;
         int planEnd = 1;
@@ -65,15 +66,17 @@ public class CsvLoader {
                     dutyPlans.add(dpNew);
                     planStart = planEnd;
                 }
-
-                Duty duty = new Duty(readFile().get(dutyStart).getDuty(),
-                        readFile().get(dutyStart).getStart(), readFile().get(dutyEnd).getEnd(),
-                        readFile().get(dutyStart).getPayedTime(), "00:00", "00:00",
-                        readFile().get(dutyStart).getPeriode(), readFile().get(dutyStart).getDepartment(),
-                        readFile().get(dutyStart).getDutyNotice());
                 if (readFile().size() - j == 1) {
                     dutyEnd++;
                 }
+                String duration = TimeCalculator.calculateDuration(readFile().get(dutyStart).getStart(), readFile().get(dutyEnd-1).getEnd());
+                TimeCalculator tc = new TimeCalculator();
+                String breakTime = tc.calculateBreak(readFile().subList(dutyStart, dutyEnd));
+                Duty duty = new Duty(readFile().get(dutyStart).getDuty(),
+                        readFile().get(dutyStart).getStart(), readFile().get(dutyEnd-1).getEnd(),
+                        readFile().get(dutyStart).getPayedTime(), breakTime, duration,
+                        readFile().get(dutyStart).getPeriode(), readFile().get(dutyStart).getDepartment(),
+                        readFile().get(dutyStart).getDutyNotice());
                 for (CsvRow row: readFile().subList(dutyStart, dutyEnd)) {
                     DutyDescription description = new DutyDescription(row.getStart(), row.getEnd(),
                             row.getDuration(), row.getFrom(), row.getTo(), row.getKindElement(),

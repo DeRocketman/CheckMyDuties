@@ -25,16 +25,21 @@ public class Comparer {
     }
 
     public ArrayList<DutyPlan> compareStartorEnd(){
+        int counterOuter = 0;
         int counter = 0;
         ArrayList<DutyPlan> solutionList = new ArrayList<>();
-        for (int i = 0; i < this.newDuties.size(); i++) {
-            for (int j = 0; j < this.regularDuties.size(); j++) {
-                for (int k = 0; k < this.newDuties.get(i).getDuties().size(); k++) {
-                    for (int l = 0; l < this.newDuties.get(j).getDuties().size(); l++) {
-                        for (int m = 0; m < this.regularDuties.get(k).getDuties().size(); m++) {
-                            System.out.println("Counter: " + counter);
-                            counter++;
-                        }
+        for (DutyPlan newDuty : this.newDuties) {
+            for (DutyPlan regularDuty : this.regularDuties) {
+                for (int k = 0; k < newDuty.getDuties().size(); k++) {
+                    for (int l = 0; l < regularDuty.getDuties().size(); l++) {
+                       if (newDuty.getDuties().get(k).getDutyNumber().equals(regularDuty.getDuties().get(l).getDutyNumber())) {
+                           System.out.println("Duty: " + newDuty.getDuties().get(k).getDutyNumber());
+                           System.out.println("Dauer Neu: " + newDuty.getDuties().get(k).getDuration() + " Dauer Regel: " + regularDuty.getDuties().get(l).getDuration());
+                           System.out.println("Beginn Neu: " + newDuty.getDuties().get(k).getStart() + " Beginn Regel: " + regularDuty.getDuties().get(l).getStart());
+                           System.out.println("Ende Neu: " + newDuty.getDuties().get(k).getEnd() + " Ende Regel: " + regularDuty.getDuties().get(l).getEnd());
+                           System.out.println("Pause Neu: " + newDuty.getDuties().get(k).getBreakTime() + " Pause Regel: " + regularDuty.getDuties().get(l).getBreakTime());
+
+                       }
                     }
                 }
             }
