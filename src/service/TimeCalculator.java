@@ -40,7 +40,7 @@ public  class TimeCalculator {
         return "0:" + minute;
     }
 
-    public String calculateDifference(String regular, String deviation) throws ParseException {
+    public static String calculateDifference(String regular, String deviation) throws ParseException {
         String description;
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         Date regularDate = format.parse(regular);
@@ -48,10 +48,10 @@ public  class TimeCalculator {
         long difference = regularDate.getTime() - deviationDate.getTime();
 
         if (difference<0) {
-            description = " früher";
+            description = " später";
             difference= difference*-1;
         } else {
-            description = " später";
+            description = " früher";
         }
         int minutes = (int) TimeUnit.MILLISECONDS.toMinutes(difference);
         if(minutes<0){
@@ -59,12 +59,28 @@ public  class TimeCalculator {
         }
         int hour = minutes/60;
         int minute = minutes%60;
-
-        return hour +":"+ minute+ description;
+        if (hour<10) {
+            if (minute<10) {
+                return "0"+hour+":0"+minute+ description;
+            } else {
+                return "0" + hour + ":"+ minute + description;
+            }
+        } else {
+            if (minute<10) {
+                return hour+":0"+minute+ description;
+            } else {
+                return hour + ":" + minute + description;
+            }
+        }
     }
 
     public static void main(String[] args) throws ParseException {
         //calculateDuration("2:19", "9:45");
-
+        System.out.println(calculateDifference("2:20", "2:25"));
+        System.out.println(calculateDifference("2:20", "2:10"));
+        System.out.println(calculateDifference("2:20", "4:45"));
+        System.out.println(calculateDifference("2:20", "0:45"));
+        System.out.println(calculateDifference("13:50", "21:45"));
+        System.out.println(calculateDifference("2:20", "25:45"));
     }
 }
