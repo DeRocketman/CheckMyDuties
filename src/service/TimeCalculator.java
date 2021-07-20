@@ -8,11 +8,9 @@ import java.util.concurrent.TimeUnit;
 
 public  class TimeCalculator {
     public static String calculateDuration(String beginn, String ende) throws ParseException {
-        String begin = beginn;
-        String end = ende;
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-        Date date1 = format.parse(begin);
-        Date date2 = format.parse(end);
+        Date date1 = format.parse(beginn);
+        Date date2 = format.parse(ende);
         long difference = date2.getTime() - date1.getTime();
         int minutes = (int) TimeUnit.MILLISECONDS.toMinutes(difference);
         if(minutes<0){
@@ -40,6 +38,29 @@ public  class TimeCalculator {
         }
         int minute = (int) TimeUnit.MILLISECONDS.toMinutes(milliseconds);
         return "0:" + minute;
+    }
+
+    public String calculateDifference(String regular, String deviation) throws ParseException {
+        String description;
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        Date regularDate = format.parse(regular);
+        Date deviationDate = format.parse(deviation);
+        long difference = regularDate.getTime() - deviationDate.getTime();
+
+        if (difference<0) {
+            description = " früher";
+            difference= difference*-1;
+        } else {
+            description = " später";
+        }
+        int minutes = (int) TimeUnit.MILLISECONDS.toMinutes(difference);
+        if(minutes<0){
+            minutes += 1440;
+        }
+        int hour = minutes/60;
+        int minute = minutes%60;
+
+        return hour +":"+ minute+ description;
     }
 
     public static void main(String[] args) throws ParseException {
