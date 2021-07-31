@@ -15,6 +15,9 @@ public class Duty {
     private String periode;
     private String notice;
     private String department;
+    private String solutionDutyStart;
+    private String solutionDutyEnd;
+    private String solutionBreakTime;
 
     ArrayList <DutyDescription> descriptions;
 
@@ -29,6 +32,10 @@ public class Duty {
         this.periode = periode;
         this.department = department;
         this.notice = notice;
+        this.solutionDutyStart = "";
+        this.solutionDutyEnd = "";
+        this.solutionBreakTime = "";
+
 
         this.descriptions = new ArrayList<>();
     }
@@ -105,6 +112,30 @@ public class Duty {
         this.notice = notice;
     }
 
+    public String getSolutionDutyStart() {
+        return solutionDutyStart;
+    }
+
+    public void setSolutionDutyStart(String solutionDutyStart) {
+        this.solutionDutyStart = solutionDutyStart;
+    }
+
+    public String getSolutionDutyEnd() {
+        return solutionDutyEnd;
+    }
+
+    public void setSolutionDutyEnd(String solutionDutyEnd) {
+        this.solutionDutyEnd = solutionDutyEnd;
+    }
+
+    public String getSolutionBreakTime() {
+        return solutionBreakTime;
+    }
+
+    public void setSolutionBreakTime(String solutionBreakTime) {
+        this.solutionBreakTime = solutionBreakTime;
+    }
+
     public ArrayList<DutyDescription> getDescriptions() {
         return descriptions;
     }
@@ -124,7 +155,11 @@ public class Duty {
                 ", duration='" + duration + '\'' +
                 ", periode='" + periode + '\'' +
                 ", notice='" + notice + '\'' +
-                ", department='" + department +
+                ", department='" + department + '\'' +
+                ", solutionDutyStart='" + solutionDutyStart + '\'' +
+                ", solutionDutyEnd='" + solutionDutyEnd + '\'' +
+                ", solutionBreakTime='" + solutionBreakTime + '\'' +
+                ", descriptions=" + descriptions +
                 '}';
     }
 }

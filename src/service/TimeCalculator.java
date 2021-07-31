@@ -54,9 +54,7 @@ public  class TimeCalculator {
             description = " früher";
         }
         int minutes = (int) TimeUnit.MILLISECONDS.toMinutes(difference);
-        if(minutes<0){
-            minutes += 1440;
-        }
+
         int hour = minutes/60;
         int minute = minutes%60;
         if (hour<10) {
@@ -76,9 +74,9 @@ public  class TimeCalculator {
 
     public static void main(String[] args) throws ParseException {
         //calculateDuration("2:19", "9:45");
-        System.out.println(calculateDifference("2:20", "2:25"));
+        System.out.println(calculateDifference("02:20", "2:25"));
         System.out.println(calculateDifference("2:20", "2:10"));
-        System.out.println(calculateDifference("2:20", "4:45"));
+        System.out.println(calculateDifference("2:20", "24:45"));
         System.out.println(calculateDifference("2:20", "0:45"));
         System.out.println(calculateDifference("13:50", "21:45"));
         System.out.println(calculateDifference("2:20", "25:45"));
