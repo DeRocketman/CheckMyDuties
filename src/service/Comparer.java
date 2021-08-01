@@ -1,6 +1,7 @@
 package service;
 
 import domain.Duty;
+import domain.DutyDescription;
 import domain.DutyPlan;
 
 import java.text.ParseException;
@@ -28,10 +29,11 @@ public class Comparer {
 
     public void compareStartEnd() throws ParseException {
 
-        //todo: String mit Pausenlage erweitern d.h. Methode dazu bauen!
+        String [] breakTimeRegular;
+        String [] breakTimeNew;
+        int breakCounterRegular;
+        int breakCounterNew;
 
-        int counterOuter = 0;
-        int counter = 0;
         for (DutyPlan newDuty : this.newDuties) {
             for (DutyPlan regularDuty : this.regularDuties) {
                 for (int k = 0; k < newDuty.getDuties().size(); k++) {
@@ -49,22 +51,29 @@ public class Comparer {
                                    newDuty.getDuties().get(k).setSolutionDutyEnd("");
                                }
                            }
-                           for (int m = 0; m < newDuty.getDuties().get(k).getDescriptions().size(); m++) {
-                               for (int n = 0; n < regularDuty.getDuties().get(l).getDescriptions().size(); n++) {
-                                   if (newDuty.getDuties().get(k).getDescriptions().get(m).getKindElement().equals("Pause")
-                                           && regularDuty.getDuties().get(l).getDescriptions().get(n).getKindElement().equals("Pause")) {
-                                       if (newDuty.getDuties().get(k).getDescriptions().get(m).getStartTime().equals(regularDuty.getDuties().get(l).getDescriptions().get(n).getStartTime())
-                                               && newDuty.getDuties().get(k).getDescriptions().get(m).getEndTime().equals(regularDuty.getDuties().get(l).getDescriptions().get(n).getEndTime())) {
-                                           System.out.println(newDuty.getDuties().get(k).getDescriptions().get(m).getStartTime() + " Alt: " + regularDuty.getDuties().get(l).getDescriptions().get(n).getStartTime());
-                                           System.out.println("Pausenlage gleich");
-                                          break;
-                                       } else {
-                                           System.out.println(newDuty.getDuties().get(k).getDescriptions().get(m).getStartTime() + " Alt: " + regularDuty.getDuties().get(l).getDescriptions().get(n).getStartTime());
-                                           System.out.println("Pausenlage geändert");
-                                           newDuty.getDuties().get(k).setSolutionBreakTime("Pausenlage geändert");
-                                           break;
-                                       }
-                                   }
+                           breakTimeRegular = new String[6];
+                           breakTimeNew = new String[6];
+                           breakCounterRegular = 0;
+                           breakCounterNew = 0;
+                           for (DutyDescription description: regularDuty.getDuties().get(l).getDescriptions()) {
+                               if (description.getKindElement().equals("Pause")) {
+                                   breakTimeRegular[breakCounterRegular] = description.getStartTime();
+                                   breakCounterRegular++;
+                                   breakTimeRegular[breakCounterRegular] = description.getEndTime();
+                                   breakCounterRegular++;
+                               }
+                           }
+                           for (DutyDescription description: newDuty.getDuties().get(k).getDescriptions()) {
+                                if (description.getKindElement().equals("Pause")) {
+                                    breakTimeNew[breakCounterNew] = description.getStartTime();
+                                    breakCounterNew++;
+                                    breakTimeNew[breakCounterNew] = description.getEndTime();
+                                    breakCounterNew++;
+                                }
+                           }
+                           for (int x = 0; x <= breakCounterNew; x++) {
+                               if(breakTimeNew[x] != null && !breakTimeNew[x].equals(breakTimeRegular[x])) {
+                                   newDuty.getDuties().get(k).setSolutionBreakTime("Pausenlage geändert");
                                }
                            }
                        }
@@ -75,7 +84,7 @@ public class Comparer {
         for (DutyPlan newDuty: this.newDuties) {
             for (Duty duty: newDuty.getDuties()
             ) {
-                //System.out.println(duty.toString());
+                System.out.println(duty.toString());
             }
         }
     }
