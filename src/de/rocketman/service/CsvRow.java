@@ -1,4 +1,4 @@
-package service;
+package de.rocketman.service;
 
 public class CsvRow {
     private final String plan;

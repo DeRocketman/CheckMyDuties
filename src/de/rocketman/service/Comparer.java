@@ -1,8 +1,8 @@
-package service;
+package de.rocketman.service;
 
-import domain.Duty;
-import domain.DutyDescription;
-import domain.DutyPlan;
+import de.rocketman.domain.Duty;
+import de.rocketman.domain.DutyDescription;
+import de.rocketman.domain.DutyPlan;
 
 import java.text.ParseException;
 import java.util.ArrayList;

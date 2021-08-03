@@ -1,6 +1,4 @@
-package domain;
-
-import domain.Duty;
+package de.rocketman.domain;
 
 import java.util.ArrayList;
 

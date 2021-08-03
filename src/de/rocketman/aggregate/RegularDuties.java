@@ -1,7 +1,7 @@
-package aggregate;
+package de.rocketman.aggregate;
 
-import domain.DutyPlan;
-import service.CsvLoader;
+import de.rocketman.domain.DutyPlan;
+import de.rocketman.service.CsvLoader;
 
 import java.text.ParseException;
 import java.util.ArrayList;

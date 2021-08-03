@@ -1,15 +1,14 @@
-package service;
+package de.rocketman.service;
 
-import domain.DutyPlan;
-import domain.Duty;
-import domain.DutyDescription;
+import de.rocketman.domain.DutyPlan;
+import de.rocketman.domain.Duty;
+import de.rocketman.domain.DutyDescription;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 public class CsvLoader {
    String filePath;

@@ -1,4 +1,4 @@
-package service;
+package de.rocketman.service;
 
 import java.text.DateFormat;
 import java.text.ParseException;

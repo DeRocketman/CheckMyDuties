@@ -1,4 +1,4 @@
-package domain;
+package de.rocketman.domain;
 
 public class DutyDescription {
     private String startTime;

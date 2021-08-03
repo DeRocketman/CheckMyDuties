@@ -1,4 +1,4 @@
-package domain;
+package de.rocketman.domain;
 
 import java.util.ArrayList;
 
